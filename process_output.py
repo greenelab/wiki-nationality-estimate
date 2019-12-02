@@ -1,5 +1,6 @@
 import sys
 import re
+import argparse
 
 def process_name(name):
     #get rid of nicknames in quotes
@@ -56,38 +57,60 @@ def process_name(name):
 
     #use number of names to ascertain which are given and family names
     if len(names)==1:
-        string=names[0]+",,,"
+        string=names[0]+"\t\t\t"
         return(string)
     if len(names)==2:
-        string=names[0]+",,"+names[1]+","
+        string=names[0]+"\t\t"+names[1]+"\t"
         return(string)
     if len(names)==3:
-        string=names[0]+","+names[1]+","+names[2]+","
+        string=names[0]+"\t"+names[1]+"\t"+names[2]+"\t"
         return(string)
     if len(names)>3:
-        string=names[0]+","+" ".join(names[1:len(names)-1])+","+names[len(names)-1]+","
+        string=names[0]+"\t"+" ".join(names[1:len(names)-1])+"\t"+names[len(names)-1]+"\t"
         return string
 
 def process_nationality(country):
-    if country in countries:
-        return countries[country]
+    if args.ethnicolr:
+        try:
+            return ethnicolr[country]
+        except:
+            return "Other"
     else:
-        return "Other"
+        try:
+            return countries[country]
+        except:
+            return "Other"
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-e","--ethnicolr",action="store_true")
+args = parser.parse_args()
 
 countries={}
-    
-countryfile=open('country_list_annotated','r')
+ethnicolr={}
+
+if args.ethnicolr:
+    filename='country_list_ethnicolr'
+else:
+    filename='country_list_annotated'
+countryfile=open(filename,'r')
 for line in countryfile:
     line=line.strip().split('\t')
     country=line[0]
     region=line[1]
+    if args.ethnicolr:
+        ethn=line[2]
+        ethnicolr[country]=ethn
     countries[country]=region
 
 namefile=open('third_full_pass.tsv','r')
-outfile=open('annotated_names.tsv','w')
-outfile.write("name_first,name_middle,name_last,ethnicity\n")
+if args.ethnicolr:
+    ofile='annotated_names_ethnicolr.tsv'
+else:
+    ofile='annotated_names.tsv'
+
+outfile=open(ofile,'w')
+outfile.write("name_first\tname_middle\tname_last\tethnicity\n")
 for line in namefile:
-    print(line.strip())
     line=line.strip().split('\t')
     name=line[0]
     namelist=process_name(name)
