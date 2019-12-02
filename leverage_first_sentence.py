@@ -55,10 +55,13 @@ def get_nationality(sentence):
     for country in countries:
         if re.match(country,sentence) is not None:
             return country
+    for country in countries:
+        if re.search(country,sentence) is not None:
+            return country
     return ""
 
 def is_words(match):
-    propernoun=re.match("[A-Z][a-z]+",match)
+    propernoun=re.search("[A-Z][a-z]+",match)
     if propernoun is None:
         return False
     else:
@@ -129,6 +132,7 @@ for link in full_links:
                     passed_nationality=True
                     #outfile.write(name+"\t"+nationality+"\n")
                     sentence_nationality=nationality
+                    break
                 #else:
                     #outfile.write("Unable to find nationality\n")
                 #break #get only first sentence matching this pattern
@@ -158,8 +162,15 @@ for link in full_links:
             for child in item.children:
                 if re.search("class=[\"\'][Nn]ickname[\"\']",str(child)) is not None:
                     s=child.find_all(text=True)
-                    if len(s)>=1:
-                        tr_name=s[-1].strip()
+                    if len(s)==1:
+                        tr_name=s[0].strip()
+                    elif len(s)>1:
+                        if s[0]=='\n':
+                            tr_name=s[1].strip()
+                        else:
+                            tr_name=s[0].strip()
+    #print(sentence_name,"?!",tr_name)
+    #print(sentence_nationality,"?!",tr_nationality)
     sentence_words=is_words(sentence_name)
     tr_words=is_words(tr_name)
     if sentence_words and not tr_words:
@@ -179,9 +190,8 @@ for link in full_links:
         persons_nationality=tr_nationality
     elif tr_words and sentence_words:
         #outfile.write("pick between "+tr_nationality+'\t'+sentence_nationality+'\n')
-        persons_nationality=tr_nationality
+        persons_nationality=sentence_nationality
     else:
         continue
     outfile.write(persons_name+"\t"+persons_nationality+'\n') 
-#TODO: write or find some sort of nationality recognizing function 
 outfile.close()

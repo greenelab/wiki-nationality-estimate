@@ -6,12 +6,12 @@ def process_name(name):
     name=re.sub('\".*\"',"",name)
     #remove periods
     name=re.sub("\.","",name)
+    name=re.sub(",","",name)
     ##work with or
     #almost always a name previously seen
     name=re.sub(" or simply.*","",name)
     name=re.sub(" also known as just .*","",name)
-    #name=re.sub(" or .*","",name)
-    #name=re.sub("also known as .*","",name)
+    
     #split on 'or'/'also known as' and process longer name
     two_names=name.split(" also known as ")
     if len(two_names)>1:
@@ -31,12 +31,27 @@ def process_name(name):
             name=two_names[0]
         else:
             name=two_names[1]
+    two_names=name.split(" [a-z]\+ known as ")
+    if len(two_names)>1:
+        if len(two_names[0])>=len(two_names[1]):
+            name=two_names[0]
+        else:
+            name=two_names[1]
+
+
     #remove common suffixes
     name=re.sub(" Jr","",name)
     name=re.sub(" Sr","",name)
     name=re.sub(" III?","",name)
     name=re.sub(" IV","",name)
     name=re.sub(" CBE","",name)
+    name=re.sub(" OBE","",name)
+    name=re.sub(" MBE","",name)
+
+    #remove common prefixes
+    name=re.sub("Sir ","",name)
+    name=re.sub("Dame ","",name)
+    name=re.sub("Dr.? ","",name)
     names=name.split()
 
     #use number of names to ascertain which are given and family names
@@ -64,15 +79,15 @@ countries={}
 countryfile=open('country_list_annotated','r')
 for line in countryfile:
     line=line.strip().split('\t')
-    print(line)
     country=line[0]
     region=line[1]
     countries[country]=region
 
-namefile=open('second_full_pass.tsv','r')
+namefile=open('third_full_pass.tsv','r')
 outfile=open('annotated_names.tsv','w')
 outfile.write("name_first,name_middle,name_last,ethnicity\n")
 for line in namefile:
+    print(line.strip())
     line=line.strip().split('\t')
     name=line[0]
     namelist=process_name(name)
