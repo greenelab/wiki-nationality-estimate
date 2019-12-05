@@ -1,5 +1,6 @@
 import sys
 import re
+import pandas
 import argparse
 
 def process_name(name):
@@ -61,7 +62,6 @@ def process_name(name):
     bad_chars = ['!', '“', '%', '&', '\(', '\)', '\/',':', ';', '=', '\?', '@','\]','\[', '_', '`','{', '\|', '}', '~','[0-9]']
     for char in bad_chars:
         if re.search(char,name) is not None:
-            #print(char)
             return None
 
     #use number of names to ascertain which are given and family names
@@ -79,39 +79,38 @@ def process_name(name):
         string=names[0]+","+" ".join(names[1:len(names)-1])+","+names[len(names)-1]+","
         return string
 
-def process_nationality(country):
-    if args.ethnicolr:
-        try:
-            return ethnicolr[country]
-        except:
-            return "Other"
-    else:
-        try:
-            return countries[country]
-        except:
-            return "Other"
+def process_nationality(nationality):
+    try:
+        country=countries[nationality]
+    except:
+        return None
+    try:
+        return regions[country]
+    except:
+        return None
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-e","--ethnicolr",action="store_true")
 args = parser.parse_args()
 
 countries={}
-ethnicolr={}
+regions={}
 
-if args.ethnicolr:
-    filename='country_list_ethnicolr'
-else:
-    filename='country_list_annotated'
-countryfile=open(filename,'r')
+countryfile=open('nationality_to_country.txt','r')
 for line in countryfile:
     line=line.strip().split('\t')
-    country=line[0]
-    region=line[1]
-    if args.ethnicolr:
-        ethn=line[2]
-        ethnicolr[country]=ethn
-    countries[country]=region
+    nationality=line[0]
+    country=line[1]
+    countries[nationality]=country
 
+regionfile=open("country_to_region.txt",'r')
+for line in regionfile:
+    line=line.strip().split('\t')
+    country=line[0]
+    if args.ethnicolr:
+        regions[country]=line[3]
+    else:
+        regions[country]=line[2]
 
 namefile=open('third_full_pass.tsv','r')
 if args.ethnicolr:
@@ -129,6 +128,8 @@ for line in namefile:
         continue
     nationality=line[1]
     country=process_nationality(nationality)
+    if country is None:
+        continue
     outfile.write(namelist+'\"'+country+'\"\n')
 
 outfile.close()

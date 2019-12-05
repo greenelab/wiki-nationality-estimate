@@ -1,0 +1,241 @@
+Country	Population	Region	Ethnicolr
+China	1400270000	Asia	Asian,GreaterEastAsian,EastAsian
+India	1355590000	Asia	Asian,IndianSubContinent
+United States	330348000	NorthAmerica	GreaterEuropean,British
+Indonesia	266911900	Asia	Asian,GreaterEastAsian,EastAsian
+Pakistan	217813000	Muslim	GreaterAfrican,Muslim
+Brazil	210799000	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Nigeria	200963599	Africa	GreaterAfrican,Africans
+Bangladesh	167691000	Asia	Asian,IndianSubContinent
+Russia	146793744	Europe	GreaterEuropean,EastEuropean
+Mexico	126577691	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Japan	126140000	Asia	Asian,GreaterEastAsian,EastAsian
+Philippines	108616000	Asia	Asian,GreaterEastAsian,EastAsian
+Egypt	99694900	Muslim	GreaterAfrican,Muslim
+Ethiopia	98665000	Africa	GreaterAfrican,Africans
+Vietnam	96208984	Asia	Asian,GreaterEastAsian,EastAsian
+Democratic Republic of the Congo	86790567	Africa	GreaterAfrican,Africans
+Germany	83073100	Europe	GreaterEuropean,WestEuropean,Germanic
+Iran	83001000	Muslim	GreaterAfrican,Muslim
+Turkey	82003882	Muslim	GreaterAfrican,Muslim
+France	67081000	Europe	GreaterEuropean,WestEuropean,French
+Thailand	66441700	Asia	Asian,GreaterEastAsian,EastAsian
+United Kingdom	66435600	Europe	GreaterEuropean,British
+Italy	60262701	Europe	GreaterEuropean,WestEuropean,Italian
+South Africa	58775022	Africa	GreaterAfrican,Africans
+Tanzania	55890747	Africa	GreaterAfrican,Africans
+Myanmar	54339766	Asia	Asian,GreaterEastAsian,EastAsian
+South Korea	51811167	Asia	Asian,GreaterEastAsian,EastAsian
+Colombia	48258494	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Kenya	47564296	Africa	GreaterAfrican,Africans
+Spain	46934632	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Argentina	44938712	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Algeria	42200000	Muslim	GreaterAfrican,Muslim
+Sudan	42074305	Muslim	GreaterAfrican,Muslim
+Ukraine	41960033	Europe	GreaterEuropean,EastEuropean
+Uganda	40006700	Africa	GreaterAfrican,Africans
+Iraq	39127900	Muslim	GreaterAfrican,Muslim
+Poland	38386000	Europe	GreaterEuropean,EastEuropean
+Canada	37837600	NorthAmerica	GreaterEuropean,British
+Morocco	35740000	Muslim	GreaterAfrican,Muslim
+Saudi Arabia	34218169	Muslim	GreaterAfrican,Muslim
+Uzbekistan	33866490	Muslim	GreaterAfrican,Muslim
+Malaysia	32680200	Asia	Asian,GreaterEastAsian,EastAsian
+Afghanistan	32225560	Muslim	GreaterAfrican,Muslim
+Venezuela	32219521	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Peru	32131400	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Ghana	30280811	Africa	GreaterAfrican,Africans
+Angola	30175553	Africa	GreaterAfrican,Africans
+Nepal	29609623	Asia	Asian,IndianSubContinent
+Yemen	29161922	Muslim	GreaterAfrican,Muslim
+Mozambique	28571310	Africa	GreaterAfrican,Africans
+Cameroon	25876000	Africa	GreaterAfrican,Africans
+Ivory Coast	25823071	Africa	GreaterAfrican,Africans
+Madagascar	25680342	Africa	GreaterAfrican,Africans
+Australia	25540900	Pacific	GreaterEuropean,British
+North Korea	25450000	Asia	Asian,GreaterEastAsian,EastAsian
+Taiwan	23596266	Asia	Asian,GreaterEastAsian,EastAsian
+Niger	22314743	Africa	GreaterAfrican,Africans
+Sri Lanka	21803000	Asia	Asian,IndianSubContinent
+Burkina Faso	20870060	Africa	GreaterAfrican,Africans
+Mali	19973000	Africa	GreaterAfrican,Africans
+Romania	19405156	Europe	GreaterEuropean,EastEuropean
+Chile	19107216	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Kazakhstan	18599936	Muslim	GreaterAfrican,Muslim
+Malawi	17563749	Africa	GreaterAfrican,Africans
+Zambia	17381168	Africa	GreaterAfrican,Africans
+Ecuador	17374900	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Netherlands	17362600	Europe	GreaterEuropean,WestEuropean,Germanic
+Syria	17070135	Muslim	GreaterAfrican,Muslim
+Senegal	16209125	Africa	GreaterAfrican,Africans
+Chad	15692969	Africa	GreaterAfrican,Africans
+Somalia	15442905	Muslim	GreaterAfrican,Muslim
+Cambodia	15288489	Asia	Asian,GreaterEastAsian,EastAsian
+Zimbabwe	15159624	Africa	GreaterAfrican,Africans
+Guatemala	14901286	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+South Sudan	12778250	Africa	GreaterAfrican,Africans
+Rwanda	12374397	Africa	GreaterAfrican,Africans
+Guinea	12218357	Africa	GreaterAfrican,Africans
+Benin	11733059	Africa	GreaterAfrican,Africans
+Haiti	11577779	Caribbean	New,Caribbean
+Tunisia	11551448	Muslim	GreaterAfrican,Muslim
+Belgium	11505732	Europe	GreaterEuropean,WestEuropean,French
+Bolivia	11469896	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Cuba	11209628	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Burundi	10953317	Africa	GreaterAfrican,Africans
+Greece	10741165	Europe	GreaterEuropean,WestEuropean,Italian
+Czech Republic	10668641	Europe	GreaterEuropean,EastEuropean
+Jordan	10561800	Muslim	GreaterAfrican,Muslim
+Dominican Republic	10358320	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Sweden	10313447	Europe	GreaterEuropean,WestEuropean,Nordic
+Portugal	10276617	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Azerbaijan	10027874	Europe	GreaterEuropean,EastEuropean
+Hungary	9772756	Europe	GreaterEuropean,EastEuropean
+United Arab Emirates	9770529	Muslim	GreaterAfrican,Muslim
+Belarus	9454800	Europe	GreaterEuropean,EastEuropean
+Honduras	9158345	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Tajikistan	9127000	Muslim	GreaterAfrican,Muslim
+Israel	9124800	Israel	GreaterEuropean,Jewish
+Austria	8898457	Europe	GreaterEuropean,WestEuropean,Germanic
+Switzerland	8570146	Europe	GreaterEuropean,WestEuropean,Germanic
+Papua New Guinea	8558800	Asia	Asian,GreaterEastAsian,EastAsian
+Sierra Leone	7901454	Africa	GreaterAfrican,Africans
+Togo	7538000	Africa	GreaterAfrican,Africans
+Hong Kong	7524100	Asia	Asian,GreaterEastAsian,EastAsian
+Paraguay	7152703	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Laos	7123205	Asia	Asian,GreaterEastAsian,EastAsian
+Bulgaria	7000039	Europe	GreaterEuropean,EastEuropean
+Serbia	6963764	Europe	GreaterEuropean,EastEuropean
+Lebanon	6855713	Muslim	GreaterAfrican,Muslim
+Libya	6777452	Muslim	GreaterAfrican,Muslim
+El Salvador	6704864	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Kyrgyzstan	6490300	Muslim	GreaterAfrican,Muslim
+Nicaragua	6460411	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Turkmenistan	5942089	Muslim	GreaterAfrican,Muslim
+Denmark	5827463	Europe	GreaterEuropean,WestEuropean,Nordic
+Singapore	5703600	Asia	Asian,GreaterEastAsian,EastAsian
+Finland	5526306	Europe	GreaterEuropean,WestEuropean,Nordic
+Central African Republic	5496011	Africa	GreaterAfrican,Africans
+Slovakia	5450017	Europe	GreaterEuropean,EastEuropean	
+Congo	5380508	Africa	GreaterAfrican,Africans
+Norway	5356789	Europe	GreaterEuropean,WestEuropean,Nordic
+Costa Rica	5058007	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Palestine	4976684	Muslim	GreaterAfrican,Muslim
+New Zealand	4945740	Pacific	GreaterEuropean,British
+Ireland	4921500	Europe	GreaterEuropean,British
+Oman	4674926	Muslim	GreaterAfrican,Muslim
+Liberia	4475353	Africa	GreaterAfrican,Africans
+Kuwait	4420110	Muslim	GreaterAfrican,Muslim
+Panama	4218808	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Mauritania	4077347	Africa	GreaterAfrican,Africans
+Croatia	4076246	Europe	GreaterEuropean,EastEuropean
+Georgia	3723500	Europe	GreaterEuropean,EastEuropean
+Uruguay	3518552	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Eritrea	3497117	Muslim	GreaterAfrican,Muslim
+Bosnia and Herzegovina	3301000	Europe	GreaterEuropean,EastEuropean
+Mongolia	3290759	Asia	Asian,GreaterEastAsian,EastAsian
+Puerto Rico	3195153	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Armenia	2961600	Europe	GreaterEuropean,EastEuropean
+Albania	2862427	Europe	GreaterEuropean,EastEuropean
+Lithuania	2793486	Europe	GreaterEuropean,EastEuropean
+Qatar	2747282	Muslim	GreaterAfrican,Muslim
+Jamaica	2726667	Caribbean	New,Caribbean
+Moldova	2681735	Europe	GreaterEuropean,EastEuropean
+Namibia	2458936	Africa	GreaterAfrican,Africans
+Gambia	2347706	Africa	GreaterAfrican,Africans
+Botswana	2338851	Africa	GreaterAfrican,Africans
+Gabon	2172579	Africa	GreaterAfrican,Africans
+Slovenia	2089310	Europe	GreaterEuropean,EastEuropean
+North Macedonia	2077132	Europe	GreaterEuropean,EastEuropean
+Lesotho	2007201	Africa	GreaterAfrican,Africans
+Latvia	1910400	Europe	GreaterEuropean,EastEuropean
+Kosovo	1795666	Europe	GreaterEuropean,EastEuropean
+Guinea-Bissau	1604528	Africa	GreaterAfrican,Africans
+Bahrain	1543300	Muslim	GreaterAfrican,Muslim
+East Timor	1387149	Asia	Asian,GreaterEastAsian,EastAsian
+Trinidad and Tobago	1363985	Caribbean	New,Caribbean
+Equatorial Guinea	1358276	Africa	GreaterAfrican,Africans
+Estonia	1324820	Europe	GreaterEuropean,EastEuropean
+Mauritius	1265985	Africa	GreaterAfrican,Africans
+Eswatini	1093238	Africa	GreaterAfrican,Africans
+Djibouti	1078373	Muslim	GreaterAfrican,Muslim
+Fiji	884887	Pacific	New,Pacific
+Cyprus	875900	Europe	GreaterEuropean,WestEuropean,Italian
+Comoros	873724	Africa	GreaterAfrican,Africans
+Guyana	782766	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Bhutan	741672	Asia	Asian,IndianSubContinent
+Solomon Islands	680806	Pacific	New,Pacific
+Macau	676100	Asia	Asian,GreaterEastAsian,EastAsian
+Montenegro	622359	Europe	GreaterEuropean,EastEuropean
+Luxembourg	613894	Europe	GreaterEuropean,WestEuropean,French
+Western Sahara	582463	Muslim	GreaterAfrican,Muslim
+Suriname	581372	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Cape Verde	550483	Africa	GreaterAfrican,Africans
+Malta	493559	Europe	GreaterEuropean,WestEuropean,Italian
+Transnistria	469000	Europe	GreaterEuropean,EastEuropean
+Brunei	442400	Asia	Asian,GreaterEastAsian,EastAsian
+Belize	408487	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Bahamas	385340	Caribbean	New,Caribbean
+Maldives	374775	Asia	Asian,IndianSubContinent
+Iceland	362860	Europe	GreaterEuropean,WestEuropean,Nordic
+Northern Cyprus	351965	Muslim	GreaterAfrican,Muslim
+Vanuatu	304500	Pacific	New,Pacific
+French Guiana	296711	Hispanic	GreaterEuropean,WestEuropean,Hispanic
+Barbados	287025	Caribbean	New,Caribbean
+New Caledonia	282200	Pacific	New,Pacific
+French Polynesia	275918	Pacific	New,Pacific
+Abkhazia	244832	Europe	GreaterEuropean,EastEuropean
+São Tomé and Príncipe	201784	Caribbean	New,Caribbean
+Samoa	200874	Pacific	New,Pacific
+Saint Lucia	178696	Caribbean	New,Caribbean
+Guam	172400	Pacific	New,Pacific
+Curaçao	158665	Caribbean	New,Caribbean
+Artsakh	148000	Europe	GreaterEuropean,EastEuropean
+Kiribati	120100	Pacific	New,Pacific
+Aruba	112309	Caribbean	New,Caribbean
+Grenada	112003	Caribbean	New,Caribbean
+Saint Vincent and the Grenadines	110608	Caribbean	New,Caribbean
+Jersey	106800	Europe	GreaterEuropean,British
+U.S. Virgin Islands	104578	Caribbean	New,Caribbean
+Federated States of Micronesia	104468	Pacific	New,Pacific
+Tonga	100651	Pacific	New,Pacific
+Seychelles	97625	Africa	GreaterAfrican,Africans
+Antigua and Barbuda	96453	Caribbean	New,Caribbean
+Isle of Man	83314	Europe	GreaterEuropean,British
+Andorra	76177	Europe	GreaterEuropean,WestEuropean,French
+Dominica	71808	Caribbean	New,Caribbean
+Cayman Islands	65813	Caribbean	New,Caribbean
+Bermuda	64027	Caribbean	New,Caribbean
+Guernsey	62506	Europe	GreaterEuropean,British
+American Samoa	56700	Pacific	New,Pacific
+Greenland	56225	Europe	GreaterEuropean,WestEuropean,Nordic
+Northern Mariana Islands	56200	Pacific	New,Pacific
+Marshall Islands	55500	Pacific	New,Pacific
+South Ossetia	53532	Europe	GreaterEuropean,EastEuropean
+Saint Kitts and Nevis	52823	Caribbean	New,Caribbean
+Faroe Islands	52122	Europe	GreaterEuropean,WestEuropean,Nordic
+Turks and Caicos Islands	41369	Caribbean	New,Caribbean
+Sint Maarten	40614	Caribbean	New,Caribbean
+Liechtenstein	38380	Europe	GreaterEuropean,WestEuropean,Germanic
+Monaco	38300	Europe	GreaterEuropean,WestEuropean,French
+Saint Martin	35746	Caribbean	New,Caribbean
+Gibraltar	33701	Europe	GreaterEuropean,British
+San Marino	33524	Europe	GreaterEuropean,WestEuropean,Italian
+British Virgin Islands	30030	Caribbean	New,Caribbean
+Palau	17900	Pacific	New,Pacific
+Cook Islands	15200	Pacific	New,Pacific
+Anguilla	14869	Caribbean	New,Caribbean
+Wallis and Futuna	11700	Pacific	New,Pacific
+Nauru	11000	Pacific	New,Pacific
+Tuvalu	10200	Pacific	New,Pacific
+Saint Barthélemy	9793	Caribbean	New,Caribbean
+Saint Pierre and Miquelon	6008	North America	GreaterEuropean,WestEuropean,French
+Montserrat	4989	Caribbean	New,Caribbean
+Falkland Islands	3198	Europe	GreaterEuropean,British
+Christmas Island	1928	Asia	Asian,GreaterEastAsian,EastAsian
+Norfolk Island	1756	Pacific	New,Pacific
+Niue	1520	Pacific	New,Pacific
+Tokelau	1400	Pacific	New,Pacific
+Vatican City	799	Europe	GreaterEuropean,WestEuropean,Italian
+Cocos Islands	538	Asia	Asian,GreaterEastAsian,EastAsian
+Pitcairn Islands	50	Pacific	New,Pacific
