@@ -5,10 +5,13 @@ import argparse
 def process_name(name):
     #get rid of nicknames in quotes
     name=re.sub('\".*\"',"",name)
+    #remove content between forward slashes, usually name pronunciations
+    name=re.sub(' /.*/ ',"",name)
+
     #remove periods
     name=re.sub("\.","",name)
     name=re.sub(",","",name)
-    ##work with or
+    
     #almost always a name previously seen
     name=re.sub(" or simply.*","",name)
     name=re.sub(" also known as just .*","",name)
@@ -53,20 +56,27 @@ def process_name(name):
     name=re.sub("Sir ","",name)
     name=re.sub("Dame ","",name)
     name=re.sub("Dr.? ","",name)
-    names=name.split()
+
+    #throw out any name containing one or more of these characters
+    bad_chars = ['!', '“', '%', '&', '\(', '\)', '\/',':', ';', '=', '\?', '@','\]','\[', '_', '`','{', '\|', '}', '~','[0-9]']
+    for char in bad_chars:
+        if re.search(char,name) is not None:
+            #print(char)
+            return None
 
     #use number of names to ascertain which are given and family names
+    names=name.split()
     if len(names)==1:
-        string=names[0]+"\t\t\t"
+        string=names[0]+",,,"
         return(string)
     if len(names)==2:
-        string=names[0]+"\t\t"+names[1]+"\t"
+        string=names[0]+",,"+names[1]+","
         return(string)
     if len(names)==3:
-        string=names[0]+"\t"+names[1]+"\t"+names[2]+"\t"
+        string=names[0]+","+names[1]+","+names[2]+","
         return(string)
     if len(names)>3:
-        string=names[0]+"\t"+" ".join(names[1:len(names)-1])+"\t"+names[len(names)-1]+"\t"
+        string=names[0]+","+" ".join(names[1:len(names)-1])+","+names[len(names)-1]+","
         return string
 
 def process_nationality(country):
@@ -102,6 +112,7 @@ for line in countryfile:
         ethnicolr[country]=ethn
     countries[country]=region
 
+
 namefile=open('third_full_pass.tsv','r')
 if args.ethnicolr:
     ofile='annotated_names_ethnicolr.tsv'
@@ -109,13 +120,15 @@ else:
     ofile='annotated_names.tsv'
 
 outfile=open(ofile,'w')
-outfile.write("name_first\tname_middle\tname_last\tethnicity\n")
+outfile.write("name_first,name_middle,name_last,ethnicity\n")
 for line in namefile:
     line=line.strip().split('\t')
     name=line[0]
     namelist=process_name(name)
+    if namelist is None:
+        continue
     nationality=line[1]
     country=process_nationality(nationality)
-    outfile.write(namelist+country+'\n')
+    outfile.write(namelist+'\"'+country+'\"\n')
 
 outfile.close()
