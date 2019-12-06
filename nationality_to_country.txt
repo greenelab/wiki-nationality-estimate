@@ -57,7 +57,6 @@ Bermudian	Bermuda
 Bermudan	Bermuda
 Bhutan	Bhutan
 Bhutanese	Bhutan
-Bhutanese	Bhutan
 Bolivia	Bolivia
 Bolivian	Bolivia
 Bonaire	Curaçao
@@ -105,7 +104,6 @@ Chile	Chile
 Chilean	Chile
 China	China
 Chinese	China
-China	China
 Taiwanese	Taiwan
 Formosan	Taiwan
 Christmas Island	Christmas Island
@@ -219,7 +217,6 @@ Guinea-Bissau	Guinea-Bissau
 Bissau-Guinean	Guinea-Bissau
 Guyana	Guyana
 Guyanese	Guyana
-Guyanese	Guyana
 Haiti	Haiti
 Haitian	Haiti
 Honduras	Honduras
@@ -248,7 +245,6 @@ Iraqi	Iraq
 Ireland	Ireland
 Irish	Ireland
 Isle of Man	Isle of Man
-Manx	Isle of Man
 Manx	Isle of Man
 Israel	Israel
 Israeli	Israel
@@ -586,7 +582,6 @@ Vatican City	Vatican City
 Vatican	Vatican City
 Vatican citizen	Vatican City
 Vatican City State	Vatican City
-Venezuela	Venezuela
 Venezuelan	Venezuela
 Venezuela	Venezuela
 Vietnam	Vietnam

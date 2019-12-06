@@ -119,17 +119,18 @@ else:
     ofile='annotated_names.tsv'
 
 outfile=open(ofile,'w')
-outfile.write("name_first,name_middle,name_last,ethnicity\n")
+outfile.write("id,name_first,name_middle,name_last,ethnicity\n")
 for line in namefile:
     line=line.strip().split('\t')
-    name=line[0]
+    num=line[0]
+    name=line[1]
     namelist=process_name(name)
     if namelist is None:
         continue
-    nationality=line[1]
+    nationality=line[2]
     country=process_nationality(nationality)
     if country is None:
         continue
-    outfile.write(namelist+'\"'+country+'\"\n')
+    outfile.write(num+","+namelist+'\"'+country+'\"\n')
 
 outfile.close()
