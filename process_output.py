@@ -67,16 +67,16 @@ def process_name(name):
     #use number of names to ascertain which are given and family names
     names=name.split()
     if len(names)==1:
-        string=names[0]+",,,"
+        string=names[0]+args.sep+args.sep+args.sep
         return(string)
     if len(names)==2:
-        string=names[0]+",,"+names[1]+","
+        string=names[0]+args.sep+args.sep+names[1]+args.sep
         return(string)
     if len(names)==3:
-        string=names[0]+","+names[1]+","+names[2]+","
+        string=names[0]+args.sep+names[1]+args.sep+names[2]+args.sep
         return(string)
     if len(names)>3:
-        string=names[0]+","+" ".join(names[1:len(names)-1])+","+names[len(names)-1]+","
+        string=names[0]+args.sep+" ".join(names[1:len(names)-1])+args.sep+names[len(names)-1]+args.sep
         return string
 
 def process_nationality(nationality):
@@ -91,6 +91,7 @@ def process_nationality(nationality):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-e","--ethnicolr",action="store_true")
+parser.add_argument("-s","--sep",default="\t")
 args = parser.parse_args()
 
 countries={}
@@ -131,6 +132,6 @@ for line in namefile:
     country=process_nationality(nationality)
     if country is None:
         continue
-    outfile.write(num+","+namelist+'\"'+country+'\"\n')
+    outfile.write(num+args.sep+namelist+'\"'+country+'\"\n')
 
 outfile.close()
