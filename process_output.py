@@ -64,8 +64,17 @@ def process_name(name):
         if re.search(char,name) is not None:
             return None
 
-    #use number of names to ascertain which are given and family names
     names=name.split()
+    
+    #remove initials
+    to_remove=[]
+    for i in range(len(names)):
+        if len(names[i]) < 2:
+            to_remove.append(i)
+    if len(to_remove) > 0:
+        names=[element for i,element in enumerate(names) if i not in to_remove]
+        
+    #use number of names to ascertain which are given and family names
     if len(names)==1:
         string=names[0]+args.sep+args.sep+args.sep
         return(string)
@@ -83,15 +92,16 @@ def process_nationality(nationality):
     try:
         country=countries[nationality]
     except:
-        return None
+        return None, None
     try:
-        return regions[country]
+        return regions[country], country
     except:
-        return None
+        return None, None
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-e","--ethnicolr",action="store_true")
 parser.add_argument("-s","--sep",default="\t")
+parser.add_argument("-c","--countryfile",default="country_to_region.txt")
 args = parser.parse_args()
 
 countries={}
@@ -104,7 +114,7 @@ for line in countryfile:
     country=line[1]
     countries[nationality]=country
 
-regionfile=open("country_to_region.txt",'r')
+regionfile=open(args.countryfile,'r')
 for line in regionfile:
     line=line.strip().split('\t')
     country=line[0]
@@ -120,7 +130,7 @@ else:
     ofile='annotated_names.tsv'
 
 outfile=open(ofile,'w')
-outfile.write("id,name_first,name_middle,name_last,ethnicity\n")
+outfile.write("id"+args.sep+"name_first"+args.sep+"name_middle"+args.sep+"name_last"+args.sep+"ethnicity\n")
 for line in namefile:
     line=line.strip().split('\t')
     num=line[0]
@@ -129,9 +139,10 @@ for line in namefile:
     if namelist is None:
         continue
     nationality=line[2]
-    country=process_nationality(nationality)
-    if country is None:
+    country,nationname=process_nationality(nationality)
+    if country is None or nationname is None:
         continue
-    outfile.write(num+args.sep+namelist+'\"'+country+'\"\n')
+    #outfile.write(num+args.sep+namelist+'\"'+country+'\"\n')
+    outfile.write(num+args.sep+namelist+'\"'+country+'\"'+args.sep+nationname+"\n")
 
 outfile.close()
