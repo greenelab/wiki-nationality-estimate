@@ -11,7 +11,7 @@ def process_name(name):
 
     # remove periods
     name = re.sub("\.", "", name)
-    name = re.sub(", ", "", name)
+    name = re.sub(",", "", name)
     
     # almost always a name previously seen
     name = re.sub(" or simply.*", "", name)
@@ -19,31 +19,31 @@ def process_name(name):
     
     # split on 'or'/'also known as' and process longer name
     two_names = name.split(" also known as ")
-    if len(two_names)>1:
-        if len(two_names[0])> = len(two_names[1]):
+    if len(two_names) > 1:
+        if len(two_names[0]) >= len(two_names[1]):
             name = two_names[0]
         else:
             name = two_names[1]
     two_names = name.split(" or ")
-    if len(two_names)>1:
-        if len(two_names[0])> = len(two_names[1]):
+    if len(two_names) > 1:
+        if len(two_names[0]) >= len(two_names[1]):
             name = two_names[0]
         else:
             name = two_names[1]
     two_names = name.split(" also ")
-    if len(two_names)>1:
-        if len(two_names[0])> = len(two_names[1]):
+    if len(two_names) > 1:
+        if len(two_names[0]) >= len(two_names[1]):
             name = two_names[0]
         else:
             name = two_names[1]
     two_names = name.split(" [a-z]\+ known as ")
-    if len(two_names)>1:
-        if len(two_names[0])> = len(two_names[1]):
+    if len(two_names) > 1:
+        if len(two_names[0]) >= len(two_names[1]):
             name = two_names[0]
         else:
             name = two_names[1]
 
-
+    # TODO: look for more suffixes
     # remove common suffixes
     name = re.sub(" Jr", "", name)
     name = re.sub(" Sr", "", name)
@@ -101,9 +101,10 @@ def process_nationality(nationality):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-e", "--ethnicolr", action="store_true")
+parser.add_argument("-n", "--names", default="data/scraped_names.tsv")
+parser.add_argument("-c", "--countryfile", default="data/country_to_region.txt")
+parser.add_argument("-o", "--outfile", default="data/annotated_names.tsv")
 parser.add_argument("-s", "--sep", default="\t")
-parser.add_argument("-c", "--countryfile", default="country_to_region.txt")
 args = parser.parse_args()
 
 countries = {}
@@ -120,31 +121,25 @@ regionfile = open(args.countryfile, 'r')
 for line in regionfile:
     line = line.strip().split('\t')
     country = line[0]
-    if args.ethnicolr:
-        regions[country] = line[3]
-    else:
-        regions[country] = line[2]
+    regions[country] = line[2]  ##TODO: change back?
 
-namefile = open('third_full_pass.tsv', 'r')
-if args.ethnicolr:
-    ofile = 'annotated_names_ethnicolr.tsv'
-else:
-    ofile = 'annotated_names.tsv'
+namefile = open(args.names, 'r')
+outfile = open(args.outfile, 'w')
+outfile.write("id"+args.sep+"name_first"+args.sep+"name_middle"+args.sep+"name_last"+args.sep+"ethnicity"+args.sep+"country\n")
 
-outfile = open(ofile, 'w')
-outfile.write("id"+args.sep+"name_first"+args.sep+"name_middle"+args.sep+"name_last"+args.sep+"ethnicity\n")
-for line in namefile:
-    line = line.strip().split('\t')
-    num = line[0]
-    name = line[1]
-    namelist = process_name(name)
-    if namelist is None:
-        continue
-    nationality = line[2]
-    country, nationname = process_nationality(nationality)
-    if country is None or nationname is None:
-        continue
-    # outfile.write(num+args.sep+namelist+'\"'+country+'\"\n')
-    outfile.write(num+args.sep+namelist+'\"'+country+'\"'+args.sep+nationname+"\n")
+with open(args.names, 'r') as f:
+    for line in namefile:
+        line = line.strip().split('\t')
+        num = line[0]
+        name = line[1]
+        namelist = process_name(name)
+        if namelist is None:
+            continue
+        nationality = line[2]
+        country, nationname = process_nationality(nationality)
+        if country is None or nationname is None:
+            continue
+        # outfile.write(num+args.sep+namelist+'\"'+country+'\"\n')
+        outfile.write(num+args.sep+namelist+'\"'+country+'\"'+args.sep+nationname+"\n")
 
 outfile.close()

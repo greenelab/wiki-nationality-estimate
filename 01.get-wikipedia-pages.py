@@ -23,7 +23,6 @@ while pages_left_to_scan:
     if next_page is not None:
         all_links.append(next_page)
         url = next_page
-        print(url)
     else:
         pages_left_to_scan = False
 

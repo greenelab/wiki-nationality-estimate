@@ -1,15 +1,15 @@
 import re
-import sys
 import requests
+import argparse
 from bs4 import BeautifulSoup
 
 
 def link_check(link):
-    #Each page of the wikipedia Category:Living_people has
-    #many links, some of which are to our persons of interest
-    #and some of which are to other wikipedia pages (e.g. the
-    #main page, the help section) This function should return
-    #true only for the links of the 200-or-so person pages.
+    #  Each page of the wikipedia Category:Living_people has
+    #  many links, some of which are to our persons of interest
+    #  and some of which are to other wikipedia pages (e.g. the
+    #  main page, the help section) This function should return
+    #  true only for the links of the 200-or-so person pages.
     is_wiki = re.search("^\/wiki\/", link)
     if is_wiki is None:
         return False
@@ -38,6 +38,10 @@ def link_check(link):
 
 
 def get_nationality(sentence):
+    #  Search for a country name in text. The country file should be ordered
+    #  such that countries that are a partial name of another country come
+    #  afterward (e.g. the algorithm checks for a match of Equitorial Guinea
+    #  before checking for a match of Guinea)
     for country in countries:
         if re.match(country, sentence) is not None:
             return country
@@ -48,6 +52,8 @@ def get_nationality(sentence):
 
 
 def is_words(match):
+    #  Ensure that a name found is a proper noun, presumed to begin with a
+    #  capital letter.
     propernoun = re.search("[A-Z][a-z]+", match)
     if propernoun is None:
         return False
@@ -55,32 +61,39 @@ def is_words(match):
         return True
 
 
-#TODO switch to argparse
-urllist = open(sys.argv[1], 'r')
-outfile = open(sys.argv[2], 'w')
+p = argparse.ArgumentParser()
+p.add_argument("-u", "--urllist", default="data/all_url_pages.tsv")
+p.add_argument("-o", "--outfile", default="data/scraped_names.tsv")
+p.add_argument("-c", "--countrylist", default="data/demonyms.tsv")
+args = p.parse_args()
 
 countries = []
-with open('country_list', 'r') as f:
+with open(args.countrylist, 'r') as f:
     for line in f:
         line = line.strip()
         countries.append(line)
 
+print("---- Loading urls for",args.urllist,"----")
+
 links = []
-for line in urllist:
-    line = line.strip()
-    html = requests.get(line)
-    soup = BeautifulSoup(html.text, 'lxml')
-    for i in soup.find_all(name='li'):
-        # pull the actual link for each one
-        for link in i.find_all('a', href=True):
+with open(args.urllist, 'r') as u:
+    for line in u:
+        line = line.strip()
+        html = requests.get(line)
+        soup = BeautifulSoup(html.text, 'lxml')
+        for link in soup.find_all(name='a', href=True):
+            #  pull the actual link for each one
             if link_check(link['href']):
                 links.append(link['href'])
 
-print(len(links))
-full_links = ['https://en.wikipedia.org'+ i for i in links]
+print("---- Loaded",len(links),"pages from",args.urllist,"----")
 
+full_links = ['https://en.wikipedia.org' + i for i in links]
+
+name_id = 1
+outfile = open(args.outfile, "w")
 for link in full_links:
-    #outfile.write(link+'\n')
+    # outfile.write(link+'\n')
     sentence_name = ""
     tr_name = ""
     sentence_nationality = ""
@@ -91,7 +104,7 @@ for link in full_links:
     passed_nationality = False
     html = requests.get(link)
     b = BeautifulSoup(html.text, 'lxml')
-    #leverage first sentence
+    # leverage first sentence
     text = b.get_text()
     text = text.split('\n')
     for line in text:
@@ -103,8 +116,8 @@ for link in full_links:
             if startswiththis is not None:
                 hit_startswiththis = True
                 continue
-            #print(line)
-            pre_parens = re.split(" ?[\[\(, ]", line)
+            # print(line)
+            pre_parens = re.split(" ?[\[\(,]", line)
             name = re.sub(" is a.*", "", pre_parens[0])
             name = re.sub(" was .*", "", name)
             name = re.sub(" or .*", "", name)
@@ -141,7 +154,7 @@ for link in full_links:
     elif tr_words and not sentence_words:
         persons_name = tr_name
     elif tr_words and sentence_words:
-        #outfile.write("pick between "+tr_name+'\t'+sentence_name+'\n')
+        # outfile.write("pick between "+tr_name+'\t'+sentence_name+'\n')
         persons_name = sentence_name
     else:
         continue
@@ -152,9 +165,10 @@ for link in full_links:
     elif tr_words and not sentence_words:
         persons_nationality = tr_nationality
     elif tr_words and sentence_words:
-        #outfile.write("pick between "+tr_nationality+'\t'+sentence_nationality+'\n')
+        # outfile.write("pick between "+tr_nationality+'\t'+sentence_nationality+'\n')
         persons_nationality = sentence_nationality
     else:
         continue
-    outfile.write(persons_name+"\t"+persons_nationality+'\n')
+    outfile.write(str(name_id)+"\t"+persons_name+"\t"+persons_nationality+'\n')
+    name_id += 1 
 outfile.close()
