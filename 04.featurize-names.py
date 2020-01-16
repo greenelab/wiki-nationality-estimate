@@ -12,7 +12,7 @@ parser.add_argument("-l", "--ngrams", default=3)
 parser.add_argument("-m", "--model_name", default="LSTM")
 args = parser.parse_args()
 
-sdf = pd.read_csv(args.namefile, sep="\t", low_memory=False)
+sdf = pd.read_csv(args.namefile, sep='\t', engine='python')
 print(sdf.head)
 sdf.dropna(subset=['name_first', 'name_last'], inplace=True)
 

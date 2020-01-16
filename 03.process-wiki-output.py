@@ -59,7 +59,7 @@ def process_name(name):
     name = re.sub("Dr.? ", "", name)
 
     # throw out any name containing one or more of these characters
-    bad_chars = ['!', '“', '%', '&', '\(', '\)', '\/', ':', ';', ' = ', '\?', '@', '\]', '\[', '_', '`', '{', '\|', '}', '~', '[0-9]']
+    bad_chars = ['!', '"', '%', '&', '\(', '\)', '\/', ':', ';', '=', '\?', '@', '\]', '\[', '_', '`', '{', '\|', '}', '~', '[0-9]']
     for char in bad_chars:
         if re.search(char, name) is not None:
             return None
@@ -73,21 +73,28 @@ def process_name(name):
             to_remove.append(i)
     if len(to_remove) > 0:
         names = [element for i, element in enumerate(names) if i not in to_remove]
-        
-    # use number of names to ascertain which are given and family names
-    if len(names) == 1:
-        string = names[0]+args.sep+args.sep+args.sep
-        return(string)
-    if len(names) == 2:
-        string = names[0]+args.sep+args.sep+names[1]+args.sep
-        return(string)
-    if len(names) == 3:
-        string = names[0]+args.sep+names[1]+args.sep+names[2]+args.sep
-        return(string)
-    if len(names) > 3:
-        string = names[0]+args.sep+" ".join(names[1:len(names)-1])+args.sep+names[len(names)-1]+args.sep
-        return string
 
+    return names
+
+
+def separate_name_parts(names):
+    first_name = ""
+    middle_name = ""
+    last_name = ""
+    if len(names) == 1:
+        last_name = names[0]
+    elif len(names) == 2:
+        first_name = names[0]
+        last_name = names[1]
+    elif len(names) == 3:
+        first_name = names[0]
+        middle_name = names[1]
+        last_name = names[2]
+    elif len(names) > 3:
+        first_name = names[0]
+        middle_name = " ".join(names[1:len(names)-1])
+        last_name = names[len(names)-1]
+    return first_name, middle_name, last_name
 
 def process_nationality(nationality):
     try:
@@ -135,11 +142,11 @@ with open(args.names, 'r') as f:
         namelist = process_name(name)
         if namelist is None:
             continue
+        first, middle, last = separate_name_parts(namelist)
         nationality = line[1]
         country, nationname = process_nationality(nationality)
         if country is None or nationname is None:
             continue
         num += 1
-        outfile.write(str(num)+args.sep+namelist+country+args.sep+nationname+"\n")
-
+        outfile.write(str(num)+args.sep+first+args.sep+middle+args.sep+last+args.sep+country+args.sep+nationname+"\n")
 outfile.close()
