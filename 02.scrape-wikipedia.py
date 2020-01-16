@@ -90,7 +90,6 @@ print("---- Loaded",len(links),"pages from",args.urllist,"----")
 
 full_links = ['https://en.wikipedia.org' + i for i in links]
 
-name_id = 1
 outfile = open(args.outfile, "w")
 for link in full_links:
     # outfile.write(link+'\n')
@@ -139,6 +138,7 @@ for link in full_links:
         if re.search("class = [\"\'][Nn]ickname[\"\']", itemstring) is not None:
             for child in item.children:
                 if re.search("class = [\"\'][Nn]ickname[\"\']", str(child)) is not None:
+                    # TODO: look for phrase "birth name"
                     s = child.find_all(text=True)
                     if len(s) == 1:
                         tr_name = s[0].strip()
@@ -169,6 +169,5 @@ for link in full_links:
         persons_nationality = sentence_nationality
     else:
         continue
-    outfile.write(str(name_id)+"\t"+persons_name+"\t"+persons_nationality+'\n')
-    name_id += 1 
+    outfile.write(persons_name+"\t"+persons_nationality+'\n')
 outfile.close()

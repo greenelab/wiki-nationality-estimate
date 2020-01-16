@@ -121,25 +121,25 @@ regionfile = open(args.countryfile, 'r')
 for line in regionfile:
     line = line.strip().split('\t')
     country = line[0]
-    regions[country] = line[2]  ##TODO: change back?
+    regions[country] = line[2]
 
 namefile = open(args.names, 'r')
 outfile = open(args.outfile, 'w')
 outfile.write("id"+args.sep+"name_first"+args.sep+"name_middle"+args.sep+"name_last"+args.sep+"ethnicity"+args.sep+"country\n")
 
+num = 0
 with open(args.names, 'r') as f:
     for line in namefile:
         line = line.strip().split('\t')
-        num = line[0]
-        name = line[1]
+        name = line[0]
         namelist = process_name(name)
         if namelist is None:
             continue
-        nationality = line[2]
+        nationality = line[1]
         country, nationname = process_nationality(nationality)
         if country is None or nationname is None:
             continue
-        # outfile.write(num+args.sep+namelist+'\"'+country+'\"\n')
-        outfile.write(num+args.sep+namelist+'\"'+country+'\"'+args.sep+nationname+"\n")
+        num += 1
+        outfile.write(str(num)+args.sep+namelist+country+args.sep+nationname+"\n")
 
 outfile.close()
