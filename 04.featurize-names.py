@@ -1,14 +1,15 @@
+import utils
 import pickle
 import argparse
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report,confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--namefile", default="data/annotated_names.tsv")
-parser.add_argument("-l", "--ngrams", default=3)
+parser.add_argument("-l", "--ngrams", type=int, default=3)
 parser.add_argument("-m", "--model_name", default="LSTM")
 args = parser.parse_args()
 
@@ -32,48 +33,7 @@ vect = CountVectorizer(analyzer='char', max_df=.3, min_df=3, ngram_range=(NGRAMS
 a = vect.fit_transform(sdf.name_last_name_first)
 vocab = vect.vocabulary_
 
-def get_index_dic(vocab):
-
-    words = []
-    for b in vocab:
-        c = vocab[b]
-        words.append((a[:, c].sum(), b))
-    words = sorted(words, reverse=True)
-    words_list = [w[1] for w in words]
-    num_words = len(words_list)
-    print("num_words = %d"% num_words)
-    idx_dic = {}
-    for i in range(len(words_list)):
-        word = words_list[i]
-        idx_dic[word] = i + 1
-    return idx_dic, words_list
-
-
-def find_ngrams(text, n, idx_dic):
-    a = zip(*[text[i:] for i in range(n)])
-    wi = []
-    for i in a:
-        w = ''.join(i)
-        try:
-            idx = float(idx_dic[w])
-        except:
-            idx = 0.
-        wi.append(idx)
-    return wi
-
-
-def featurize_data(names_list, ngram, index_dic):
-
-    feat_list = []
-    for full_name in names_list:
-        feats = find_ngrams(full_name, ngram, idx_dic)
-        feat_list.append(np.array(feats))
-    #idx_dic = get_index_dic(vocab)
-    #X = np.array(names_list.apply(lambda c: find_ngrams(c, NGRAMS, index_dic)))
-    return feat_list
-
-
-idx_dic, words_list = get_index_dic(vocab)
+idx_dic, words_list = utils.get_index_dic(vocab, a)
 filename="models/"+args.model_name+"_idx_dic.pkl"
 f = open(filename, "wb")
 pickle.dump(idx_dic, f)
@@ -82,7 +42,7 @@ f.close()
 print('generated indexes')
 
 sdf['name_last_name_first'] = sdf['name_last'] + ' ' + sdf['name_first']
-X = featurize_data(sdf['name_last_name_first'], NGRAMS, idx_dic)
+X = utils.featurize_data(sdf['name_last_name_first'], NGRAMS, idx_dic)
 
 # build X from index of n-gram sequence
 #X = np.array(sdf.name_last_name_first.apply(lambda c: find_ngrams(c, NGRAMS)))
@@ -98,6 +58,9 @@ avg_feature_len = int(np.mean(X_len))
 
 print("Max feature len = %d, Avg. jfeature len = %d" % (max_feature_len, avg_feature_len))
 y = np.array(sdf.ethnicity.astype('category').cat.codes)
+print(sdf.ethnicity.astype('category'))
+categories=pd.DataFrame(sdf.ethnicity.astype('category').cat.categories)
+categories.to_csv('models/%s_categories.txt'%args.model_name, sep="\t", index=False, header=None)
 
 # Split train and test dataset
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=21, stratify=y)

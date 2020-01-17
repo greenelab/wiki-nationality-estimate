@@ -89,7 +89,7 @@ sdf['name_last_name_first'] = sdf['name_last'] + ' ' + sdf['name_first']
 y_pred = model.predict_classes(X_test, verbose=2)
 p = model.predict_proba(X_test, verbose=2)  # to predict probability
 target_names = list(sdf.ethnicity.astype('category').cat.categories)
-print(classification_report(np.argmax(y_test, axis=1), y_pred, target_names))
+#print(classification_report(np.argmax(y_test, axis=1), y_pred, target_names))
 print(confusion_matrix(np.argmax(y_test, axis=1), y_pred))
 
 path = "models/%s.h5" % args.model_name

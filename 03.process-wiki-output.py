@@ -117,7 +117,7 @@ args = parser.parse_args()
 countries = {}
 regions = {}
 
-countryfile = open('nationality_to_country.txt', 'r')
+countryfile = open('data/nationality_to_country.txt', 'r')
 for line in countryfile:
     line = line.strip().split('\t')
     nationality = line[0]
