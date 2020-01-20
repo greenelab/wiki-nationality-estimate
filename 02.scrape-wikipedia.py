@@ -64,14 +64,14 @@ def is_words(match):
 p = argparse.ArgumentParser()
 p.add_argument("-u", "--urllist", default="data/all_url_pages.tsv")
 p.add_argument("-o", "--outfile", default="data/scraped_names.tsv")
-p.add_argument("-c", "--countrylist", default="data/demonyms.tsv")
+p.add_argument("-c", "--countrylist", default="data/nationality_to_country.tsv")
 args = p.parse_args()
 
 countries = []
 with open(args.countrylist, 'r') as f:
     for line in f:
-        line = line.strip()
-        countries.append(line)
+        line = line.strip().split('\t')
+        countries.append(line[0])
 
 print("---- Loading urls for",args.urllist,"----")
 
