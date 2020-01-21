@@ -109,7 +109,7 @@ def process_nationality(nationality):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--names", default="data/scraped_names.tsv")
-parser.add_argument("-c", "--countryfile", default="data/country_to_region.txt")
+parser.add_argument("-c", "--countryfile", default="data/country_to_region.tsv")
 parser.add_argument("-o", "--outfile", default="data/annotated_names.tsv")
 parser.add_argument("-s", "--sep", default="\t")
 args = parser.parse_args()
@@ -117,7 +117,7 @@ args = parser.parse_args()
 countries = {}
 regions = {}
 
-countryfile = open('data/nationality_to_country.txt', 'r')
+countryfile = open('data/nationality_to_country.tsv', 'r')
 for line in countryfile:
     line = line.strip().split('\t')
     nationality = line[0]
