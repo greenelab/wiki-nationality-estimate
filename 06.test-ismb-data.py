@@ -21,7 +21,7 @@ idx_dic = pickle.load(open(filename, "rb"))
 categories = pd.read_csv("models/%s_categories.txt" % args.model_name, header=None)
 
 # Get PubMed author data from iscb-diversity repo
-df = pd.read_csv("https://github.com/greenelab/iscb-diversity/raw/master/data/pubmed/authors.tsv.xz", sep='\t')
+df = pd.read_csv("https://github.com/greenelab/iscb-diversity/raw/%s/data/names/full-names.tsv.xz"%utils.iscb_diversity_commit, sep='\t')
 df.dropna(subset=['fore_name', 'last_name'], inplace=True)
 sdf = df
 sdf['name_last_name_first'] = sdf['last_name'] + ' ' + sdf['fore_name']
@@ -36,7 +36,7 @@ y_pubmed_prob.to_csv("data/%s_results_authors.tsv" % args.model_name, sep='\t')
 
 
 # Get ISMB keynote data from iscb-diversity repo
-df = pd.read_csv("https://raw.githubusercontent.com/greenelab/iscb-diversity/master/data/iscb/keynotes.tsv", sep='\t')
+df = pd.read_csv("https://raw.githubusercontent.com/greenelab/iscb-diversity/%s/data/iscb/keynotes.tsv"%utils.iscb_diversity_commit, sep='\t')
 df.dropna(subset=['fore_name', 'last_name'], inplace=True)
 sdf = df
 sdf['name_last_name_first'] = sdf['last_name'] + ' ' + sdf['fore_name']

@@ -1,5 +1,7 @@
 import numpy as np
 
+iscb_diversity_commit="3db643c88b72f821918e13404d09d6983dfc073c"
+
 def get_index_dic(vocab, a):
 
     words = []
@@ -38,5 +40,3 @@ def featurize_data(names_list, ngram, index_dic):
         feats = find_ngrams(full_name, ngram, index_dic)
         feat_list.append(np.array(feats))
     return feat_list
-
-
