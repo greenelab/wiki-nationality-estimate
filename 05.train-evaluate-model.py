@@ -75,16 +75,11 @@ print('Test accuracy:', acc)
 
 sdf = pd.read_csv(args.namefile, sep="\t", low_memory=False)
 print(sdf.head)
-sdf.dropna(subset=['name_first', 'name_last'], inplace=True)
+sdf.dropna(subset=['name'], inplace=True)
 
-sdf['name_first'] = sdf.name_first.str.title()
-sdf['name_last'] = sdf.name_last.str.title()
+sdf['name'] = sdf.name.str.title()
 
-sdf.groupby('ethnicity').agg({'name_first': 'count'})
-
-# concat last name and first name
-sdf['name_last_name_first'] = sdf['name_last'] + ' ' + sdf['name_first']
-
+sdf.groupby('ethnicity').agg({'name': 'count'})
 
 y_pred = model.predict_classes(X_test, verbose=2)
 p = model.predict_proba(X_test, verbose=2)  # to predict probability
