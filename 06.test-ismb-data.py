@@ -22,10 +22,8 @@ categories = pd.read_csv("models/%s_categories.txt" % args.model_name, header=No
 
 # Get PubMed author data from iscb-diversity repo
 df = pd.read_csv("https://github.com/greenelab/iscb-diversity/raw/%s/data/names/full-names.tsv.xz"%utils.iscb_diversity_commit, sep='\t')
-df.dropna(subset=['fore_name', 'last_name'], inplace=True)
 sdf = df
-sdf['name_last_name_first'] = sdf['last_name'] + ' ' + sdf['fore_name']
-pubmed_names_list = sdf['name_last_name_first']
+pubmed_names_list = sdf['full_name']
 
 X_pubmed = utils.featurize_data(pubmed_names_list, args.ngrams, idx_dic)
 X_pubmed = sequence.pad_sequences(X_pubmed, maxlen=20)
@@ -37,10 +35,8 @@ y_pubmed_prob.to_csv("data/%s_results_authors.tsv" % args.model_name, sep='\t')
 
 # Get ISMB keynote data from iscb-diversity repo
 df = pd.read_csv("https://raw.githubusercontent.com/greenelab/iscb-diversity/%s/data/iscb/keynotes.tsv"%utils.iscb_diversity_commit, sep='\t')
-df.dropna(subset=['fore_name', 'last_name'], inplace=True)
 sdf = df
-sdf['name_last_name_first'] = sdf['last_name'] + ' ' + sdf['fore_name']
-ismb_names_list = sdf['name_last_name_first']
+ismb_names_list = sdf['full_name']
 
 # should get a list of strings with format: firstName + ' ' + lastName
 X_ismb = utils.featurize_data(ismb_names_list, args.ngrams, idx_dic)

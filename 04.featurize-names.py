@@ -15,22 +15,18 @@ args = parser.parse_args()
 
 sdf = pd.read_csv(args.namefile, sep='\t', engine='python')
 print(sdf.head)
-sdf.dropna(subset=['name_first', 'name_last'], inplace=True)
+sdf.dropna(subset=['name'], inplace=True)
 
-sdf['name_first'] = sdf.name_first.str.title()
-sdf['name_last'] = sdf.name_last.str.title()
+sdf['name'] = sdf.name.str.title()
 
 print(sdf)
 
-sdf.groupby('ethnicity').agg({'name_first': 'count'})
-
-# concat last name and first name
-sdf['name_last_name_first'] = sdf['name_last'] + ' ' + sdf['name_first']
+sdf.groupby('ethnicity').agg({'name': 'count'})
 
 # build n-gram list
 NGRAMS = args.ngrams
 vect = CountVectorizer(analyzer='char', max_df=.3, min_df=3, ngram_range=(NGRAMS, NGRAMS), lowercase=False)
-a = vect.fit_transform(sdf.name_last_name_first)
+a = vect.fit_transform(sdf.name)
 vocab = vect.vocabulary_
 
 idx_dic, words_list = utils.get_index_dic(vocab, a)
@@ -41,8 +37,7 @@ f.close()
 
 print('generated indexes')
 
-sdf['name_last_name_first'] = sdf['name_last'] + ' ' + sdf['name_first']
-X = utils.featurize_data(sdf['name_last_name_first'], NGRAMS, idx_dic)
+X = utils.featurize_data(sdf['name'], NGRAMS, idx_dic)
 
 # build X from index of n-gram sequence
 #X = np.array(sdf.name_last_name_first.apply(lambda c: find_ngrams(c, NGRAMS)))
