@@ -9,7 +9,6 @@ from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding
 from keras.layers import LSTM
-#from sklearn.metrics import log_loss, roc_auc_score, confusion_matrix, classification_report
 
 seed(123)
 set_random_seed(123)
@@ -75,25 +74,6 @@ score, acc = model.evaluate(X_test, y_test,
                             batch_size=batch_size, verbose=2)
 print('Test score:', score)
 print('Test accuracy:', acc)
-
-
-'''sdf = pd.read_csv(args.namefile, sep="\t", low_memory=False)
-print(sdf.head)
-sdf.dropna(subset=['name'], inplace=True)
-
-sdf['name'] = sdf.name.str.title()
-
-sdf.groupby('ethnicity').agg({'name': 'count'})
-
-y_pred = model.predict_classes(X_test, verbose=2)
-y_prob = model.predict_proba(X_test, verbose=2)  # to predict probability
-target_names = list(sdf.ethnicity.astype('category').cat.categories)
-print(log_loss(y_test, y_prob))
-
-y_true = np.argmax(y_test, axis=1)
-print("ROC/AUC", roc_auc_score(y_true, y_prob, multiclass='ovo'))
-print(classification_report(y_true, y_pred, target_names))
-print(confusion_matrix(y_true, y_pred))'''
 
 path = "models/%s.h5" % args.model_name
 model.save(path)
