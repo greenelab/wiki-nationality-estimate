@@ -7,7 +7,7 @@ from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding
 from keras.layers import LSTM
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import log_loss, confusion_matrix, classification_report
 
 
 parser = argparse.ArgumentParser()
@@ -84,8 +84,11 @@ sdf.groupby('ethnicity').agg({'name': 'count'})
 y_pred = model.predict_classes(X_test, verbose=2)
 p = model.predict_proba(X_test, verbose=2)  # to predict probability
 target_names = list(sdf.ethnicity.astype('category').cat.categories)
-#print(classification_report(np.argmax(y_test, axis=1), y_pred, target_names))
-print(confusion_matrix(np.argmax(y_test, axis=1), y_pred))
+print(log_loss(y_test, p))
+
+assignments = np.argmax(y_test, axis=1)
+print(classification_report(assignments, y_pred, target_names))
+print(confusion_matrix(assignments, y_pred))
 
 path = "models/%s.h5" % args.model_name
 model.save(path)
