@@ -61,6 +61,15 @@ target_names = list(sdf.ethnicity.astype('category').cat.categories)
 print("Log loss", log_loss(y_test, y_prob))
 
 y_true = np.argmax(y_test, axis=1)
+y_true_names=[]
+for i in range(len(y_true)):
+    y_true_names.append(target_names[y_true[i]])
+print(len(y_true_names))
+
+y_test_probs = pd.DataFrame(y_prob, columns=target_names)
+y_test_probs['truth']=y_true_names
+y_test_probs.to_csv("data/%s_results_test.tsv" % args.model_name, sep='\t', index=False)
+
 print("ROC/AUC", roc_auc_score(y_true, y_prob, multi_class='ovo'))
 print("Classification report\n", classification_report(y_true, y_pred, target_names=target_names))
 print("Confusion matrix\n", confusion_matrix(np.argmax(y_test, axis=1), y_pred))
