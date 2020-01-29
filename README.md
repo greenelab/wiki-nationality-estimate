@@ -21,3 +21,10 @@ Names are pulled from Wikipedia's category of Living People.
 ## Use classifier
 
 06.test-ismb-data.py takes conference speaker and journal author data from https://github.com/greenelab/iscb-diversity (code to produce these data also available in that repo) and runs them through our classifier.
+
+## License
+
+The entire repository is released under a BSD 3-Clause License as written in [`LICENSE.md`](LICENSE.md).
+In addition, the contents of the [`data`](data) and [`models`](models) directories are released under a [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+Note that this repository contains information from [Wikipedia](https://en.wikipedia.org), which is licensed under [CC BY-SA 3.0](https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License).
+However, our understanding is that we are reusing purely factual data from Wikipedia that is not subject to copyright in the United States.
