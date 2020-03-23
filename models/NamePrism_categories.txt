@@ -1,0 +1,11 @@
+African
+CelticEnglish
+EastAsian
+European
+Finland
+Greek
+Hispanic
+Jewish
+Muslim
+Nordic
+SouthAsian
