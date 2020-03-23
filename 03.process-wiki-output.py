@@ -103,7 +103,7 @@ regionfile = open(args.countryfile, 'r')
 for line in regionfile:
     line = line.strip().split('\t')
     country = line[0]
-    regions[country] = line[2]
+    regions[country] = line[1]
 
 namefile = open(args.names, 'r')
 outfile = open(args.outfile, 'w')
