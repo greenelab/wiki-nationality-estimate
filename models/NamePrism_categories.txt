@@ -2,7 +2,6 @@ African
 CelticEnglish
 EastAsian
 European
-Finland
 Greek
 Hispanic
 Jewish
