@@ -1,6 +1,6 @@
 import numpy as np
 
-iscb_diversity_commit="dce11c417994d24b739e5810a5ddbc7e9793d033"
+iscb_diversity_commit="5e4254338df12038ae796ae4255fd88360128f68"
 
 def get_index_dic(vocab, a):
 
