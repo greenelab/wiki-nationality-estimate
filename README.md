@@ -16,11 +16,13 @@ Names are pulled from Wikipedia's category of Living People.
 
 04.featurize-names.py splits the names into a list of n-grams (e.g. "Jane Doe" split into 3-grams becomes the document ["Jan","ane","ne ", "e D", " Do", "Doe"]) which is use as input for the classifier. and splits the wiki data into training and evaluation sets.
 
-05.train-evaluate-model.py builds the LSTM neural network used as a classifier on the training data created in step 4, and then returns accuracy metrics as measured on the evaluation set.
+05.train-model.py builds the LSTM neural network used as a classifier on the training data created in step 4.
+
+06.evaluate-model.py returns accuracy metrics as measured on the evaluation set.
 
 ## Use classifier
 
-06.test-ismb-data.py takes conference speaker and journal author data from https://github.com/greenelab/iscb-diversity (code to produce these data also available in that repo) and runs them through our classifier.
+07.test-ismb-data.py takes conference speaker and journal author data from https://github.com/greenelab/iscb-diversity (code to produce these data also available in that repo) and runs them through our classifier.
 
 ## License
 
